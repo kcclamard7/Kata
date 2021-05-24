@@ -1,0 +1,47 @@
+﻿@model IEnumerable<KataTest.Models.Calculation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-success">Calculation history</h1>
+
+<p>
+    <a asp-action="Create">New Calculation</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FristNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondNumer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FristNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondNumer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

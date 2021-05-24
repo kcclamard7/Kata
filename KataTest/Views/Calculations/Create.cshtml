@@ -1,0 +1,51 @@
+﻿@model KataTest.Models.Calculation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Calculation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FristNumber" class="control-label"></label>
+                <input asp-for="FristNumber" class="form-control" id="firstnumber"/>
+                <span asp-validation-for="FristNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondNumer" class="control-label"></label>
+                <input asp-for="SecondNumer" class="form-control" id="secondnumber" />
+                <span asp-validation-for="SecondNumer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Result" class="control-label"></label>
+                <input asp-for="Result" class="form-control" id="result" readonly/>
+                <span asp-validation-for="Result" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Calculate" class="btn btn-primary" onclick="dothesum()"/>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        function dothesum() {
+            let result = parseFloat(document.getElementById("firstnumber").value) + parseFloat(document.getElementById("secondnumber").value);
+            document.getElementById("result").setAttribute("value", result);
+        }
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
